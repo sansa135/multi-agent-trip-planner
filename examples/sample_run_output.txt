@@ -1,0 +1,82 @@
+
+
+############ RUN 1: within-budget trip ############
+======================================================================
+TRIP PLAN: Tokyo (5 days, mid-range style)
+======================================================================
+
+--- Research Notes ---
+Based on available information, this destination offers a mix of cultural landmarks, local cuisine, and outdoor activities. Best visited outside peak holiday weeks for lower costs. Public transit is generally reliable for getting between attractions.
+
+--- Budget ---
+Flight: $1070.05
+Hotel/night: $139.84
+Total estimated cost: $1919.25
+Within budget ($3000): True
+Note: [mock response for prompt: Estimated flight cost: $1070.05
+Estimated hotel cost (5 nights): $699.20
+Estimat...]
+
+--- Itinerary ---
+Day 1: Morning - Senso-ji Temple | Afternoon - Shibuya Crossing | Evening - Local dinner recommendation within budget
+Day 2: Morning - Shibuya Crossing | Afternoon - teamLab Planets | Evening - Local dinner recommendation within budget
+Day 3: Morning - teamLab Planets | Afternoon - Tsukiji Outer Market | Evening - Local dinner recommendation within budget
+Day 4: Morning - Tsukiji Outer Market | Afternoon - Senso-ji Temple | Evening - Local dinner recommendation within budget
+Day 5: Morning - Senso-ji Temple | Afternoon - Shibuya Crossing | Evening - Local dinner recommendation within budget
+
+--- Critic Verdict ---
+APPROVED
+Revisions needed: 0
+
+--- Agent Trace ---
+  orchestrator: starting trip plan for Tokyo
+  [research_agent] looked up destination data for 'Tokyo'
+  [research_agent] research brief generated
+  [budget_agent] flight=$1070.05, hotel/night=$139.84, est. total=$1919.25 vs budget=$3000
+  [itinerary_agent] drafting initial itinerary
+  [critic_agent] itinerary approved
+  orchestrator: trip plan finalized
+
+
+############ RUN 2: tight-budget trip (expect revision loop) ############
+======================================================================
+TRIP PLAN: Paris (7 days, luxury style)
+======================================================================
+
+--- Research Notes ---
+Based on available information, this destination offers a mix of cultural landmarks, local cuisine, and outdoor activities. Best visited outside peak holiday weeks for lower costs. Public transit is generally reliable for getting between attractions.
+
+--- Budget ---
+Flight: $979.66
+Hotel/night: $178.62
+Total estimated cost: $2440.0
+Within budget ($900): False
+Note: [mock response for prompt: Estimated flight cost: $979.66
+Estimated hotel cost (7 nights): $1250.34
+Estimat...]
+
+--- Itinerary ---
+Day 1: Morning - Eiffel Tower | Afternoon - Louvre Museum | Evening - Local dinner recommendation within budget
+Day 2: Morning - Louvre Museum | Afternoon - Montmartre | Evening - Local dinner recommendation within budget
+Day 3: Morning - Montmartre | Afternoon - Seine River Cruise | Evening - Local dinner recommendation within budget
+Day 4: Morning - Seine River Cruise | Afternoon - Eiffel Tower | Evening - Local dinner recommendation within budget
+Day 5: Morning - Eiffel Tower | Afternoon - Louvre Museum | Evening - Local dinner recommendation within budget
+Day 6: Morning - Louvre Museum | Afternoon - Montmartre | Evening - Local dinner recommendation within budget
+Day 7: Morning - Montmartre | Afternoon - Seine River Cruise | Evening - Local dinner recommendation within budget
+
+--- Critic Verdict ---
+APPROVED with budget caveat: over budget after max revisions; flagged for traveler to adjust dates/style.
+Revisions needed: 2
+
+--- Agent Trace ---
+  orchestrator: starting trip plan for Paris
+  [research_agent] looked up destination data for 'Paris'
+  [research_agent] research brief generated
+  [budget_agent] flight=$979.66, hotel/night=$178.62, est. total=$2440.00 vs budget=$900
+  [itinerary_agent] drafting initial itinerary
+  [critic_agent] itinerary rejected: Trip is $1540.00 over budget. Consider a shorter trip, lower-cost travel style, or fewer paid attractions.
+  [itinerary_agent] revising itinerary (revision #1)
+  [critic_agent] itinerary rejected: Trip is $1540.00 over budget. Consider a shorter trip, lower-cost travel style, or fewer paid attractions.
+  [itinerary_agent] revising itinerary (revision #2)
+  [critic_agent] itinerary approved
+  orchestrator: trip plan finalized
